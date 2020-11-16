@@ -203,6 +203,10 @@ func (l *intLogger) logPlain(t time.Time, name string, level Level, msg string, 
 			if strings.HasSuffix(file, "intlogger.go") || strings.HasSuffix(file, "interceptlogger.go") {
 				offset = 4
 			}
+			if strings.HasSuffix(file, "stdlog.go") {
+				// Extra frames for standard log package.
+				offset = 7
+			}
 		}
 
 		if _, file, line, ok := runtime.Caller(offset); ok {
